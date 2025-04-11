@@ -26,7 +26,7 @@ This application lets users generate complete websites from text descriptions us
    ```
    chmod -R 755 generated/
    ```
-3. Access the application through your web server (e.g., http://localhost/ai-website-generator/)
+3. Access the application through your web server (e.g., http://localhost/aiwebbuilder/)
 
 ## How to Use
 
