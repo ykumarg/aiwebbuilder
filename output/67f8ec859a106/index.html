@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Rental - Explore the City</title>
+    <meta name="description" content="Rent bikes and explore the city with our high-quality rental bikes. Enjoy affordable rates and convenient locations.">
+    <meta name="keywords" content="bike rental, bicycle rental, city bike, bike hire, cycling, rental bikes">
+    <meta name="author" content="Your Name">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --accent-color: #ffc107;
+            --text-color: #343a40;
+            --background-color: #f8f9fa;
+            --white: #fff;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Layout */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 2rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1561070143-30960a9f4546?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            padding: 10rem 0;
+        }
+
+        #hero h1 {
+            color: var(--white);
+            font-size: 4rem;
+        }
+
+        #hero p {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* About Section */
+        #about {
+            padding: 5rem 0;
+        }
+
+        #about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        #about img {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Services Section */
+        #services {
+            padding: 5rem 0;
+            background-color: var(--background-color);
+        }
+
+        #services .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 5rem 0;
+        }
+
+        #contact .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        #contact form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #contact label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        #contact input,
+        #contact textarea {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        #contact button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #contact button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: var(--white);
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+            }
+
+            nav li {
+                margin-left: 0;
+                margin-bottom: 1rem;
+            }
+
+            #hero h1 {
+                font-size: 3rem;
+            }
+
+            #about .container,
+            #contact .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* AOS Animations */
+        [data-aos="fade-up"] {
+            transform: translateY(50px);
+            opacity: 0;
+            transition-property: transform, opacity;
+        }
+
+        [data-aos="fade-up"].aos-animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#">Bike Rental</a>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container">
+            <h1>Explore the City on Two Wheels</h1>
+            <p>Rent a bike and discover hidden gems, scenic routes, and vibrant neighborhoods.</p>
+            <a href="#services" class="btn">View Our Bikes</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container" data-aos="fade-up">
+            <div class="about-content">
+                <h2>About Us</h2>
+                <p>We are passionate about cycling and believe that it's the best way to experience a city. Our mission is to provide high-quality rental bikes and exceptional customer service to make your urban adventures unforgettable.</p>
+                <p>With a wide range of bikes to choose from, we have something for everyone, from casual riders to experienced cyclists. Our bikes are well-maintained and regularly serviced to ensure a safe and enjoyable ride.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1568702846914-96b3bd81258e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bike Rental">
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 data-aos="fade-up" style="text-align: center;">Our Services</h2>
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-bicycle"></i>
+                <h3>City Bikes</h3>
+                <p>Perfect for exploring the city at your own pace. Comfortable and easy to ride.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-mountain"></i>
+                <h3>Mountain Bikes</h3>
+                <p>Tackle challenging trails and experience the thrill of off-road cycling.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-bolt"></i>
+                <h3>Electric Bikes</h3>
+                <p>Effortlessly conquer hills and cover more ground with our electric bikes.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-child"></i>
+                <h3>Kids Bikes</h3>
+                <p>Fun for the whole family with our range of bikes suited for children.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div data-aos="fade-up">
+                <h2>Contact Us</h2>
+                <p>Have any questions or need assistance? Fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+            <form data-aos="fade-up" class="contact-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Bike Rental. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        AOS.init({
+          duration: 1000,
+          easing: 'ease-in-out',
+          once: true
+        });
+
+        // Image loading animation (optional - but keeps the images from popping in)
+        document.addEventListener("DOMContentLoaded", function() {
+          const images = document.querySelectorAll("img");
+          images.forEach(img => {
+            img.onload = function() {
+              img.classList.add("loaded"); // add a loaded class for fade-in or other effects
+            };
+          });
+        });
+
+    </script>
+</body>
+</html>

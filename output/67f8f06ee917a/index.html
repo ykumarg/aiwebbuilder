@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect - Your Modern Dating Platform</title>
+    <meta name="description" content="Find your perfect match with Connect, the modern dating website. Explore our features, services, and join our community.">
+    <meta name="keywords" content="dating, online dating, love, relationships, connect, modern dating, meet new people">
+    <meta name="author" content="Your Name">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Custom Properties */
+        :root {
+            --primary-color: #6246ea;
+            --secondary-color: #379683;
+            --accent-color: #ff70a6;
+            --bg-color: #0b032d;
+            --text-color: #fff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--glass-bg) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .navbar-brand {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: var(--text-color) !important;
+            margin-left: 1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        /* Hero Section */
+        #hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(11, 3, 45, 0.5), rgba(11, 3, 45, 0.8));
+            z-index: 1;
+        }
+
+        #hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+          margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-color);
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--text-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px var(--shadow-color);
+        }
+
+        /* Features Section */
+        #features {
+            padding: 5rem 0;
+            background: linear-gradient(to bottom, var(--bg-color), #1a074d);
+        }
+
+        .feature-card {
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 5px 5px 10px #1a074d,
+                        -5px -5px 10px #0b032d;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 7px 7px 14px #1a074d,
+                        -7px -7px 14px #0b032d;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+        }
+
+        /* Services Section */
+        #services {
+            padding: 5rem 0;
+            background: linear-gradient(to bottom, #1a074d, var(--bg-color));
+        }
+
+        .service-card {
+            position: relative;
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover {
+            transform: rotateY(180deg);
+        }
+
+        .service-front, .service-back {
+            padding: 2rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .service-back {
+            background-color: var(--glass-bg);
+            color: var(--text-color);
+            transform: rotateY(180deg);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+        }
+
+        .price-tag {
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-top: 1rem;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            padding: 5rem 0;
+            background: linear-gradient(to bottom, var(--bg-color), #1a074d);
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .testimonial-card {
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid var(--glass-border);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-name {
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 5rem 0;
+            background: linear-gradient(to bottom, #1a074d, var(--bg-color));
+        }
+
+        .contact-form {
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        .form-floating {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 1.5rem 1rem;
+            height: auto;
+        }
+
+        .form-control:focus {
+            background-color: transparent;
+            color: var(--text-color);
+            border-color: var(--primary-color);
+            box-shadow: none;
+        }
+
+        .form-label {
+            color: var(--text-secondary);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+      /*Floating elements*/
+      .floating {
+        animation: float 6s ease-in-out infinite;
+        border-radius: 50%;
+      }
+
+      .floating-sm {
+        animation: float 4s ease-in-out infinite;
+        border-radius: 50%;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translatey(0px);
+        }
+        50% {
+          transform: translatey(-20px);
+        }
+        100% {
+          transform: translatey(0px);
+        }
+      }
+
+
+        /* Footer */
+        footer {
+            background-color: #08021f;
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .feature-card {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Connect</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <video autoplay loop muted playsinline>
+            <source src="https://res.cloudinary.com/dskroppdq/video/upload/v1718670998/dating_video_g2kewt.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+          <img src="https://res.cloudinary.com/dskroppdq/image/upload/v1718671665/heart_sm_d2x5oc.png" class="floating-sm" style="position: absolute; top: 20%; left: 10%" width="50">
+          <img src="https://res.cloudinary.com/dskroppdq/image/upload/v1718671665/heart_sm_d2x5oc.png" class="floating" style="position: absolute; top: 40%; right: 10%" width="100">
+          <img src="https://res.cloudinary.com/dskroppdq/image/upload/v1718671665/heart_sm_d2x5oc.png" class="floating-sm" style="position: absolute; bottom: 20%; left: 20%" width="30">
+            <h1>Find Your Perfect Match</h1>
+            <p>Connect with like-minded individuals and start your journey to love.</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <img src="https://res.cloudinary.com/dskroppdq/image/upload/v1718671049/chat_icon_mq5aqa.svg" alt="Secure Chat" class="feature-icon">
+                        <h3>Secure Chat</h3>
+                        <p>Communicate safely with end-to-end encryption.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <img src="https://res.cloudinary.com/dskroppdq/image/upload/v1718671049/profile_icon_lqly6c.svg" alt="Detailed Profiles" class="feature-icon">
+                        <h3>Detailed Profiles</h3>
+                        <p>Create a profile that truly reflects who you are.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <img src="https://res.cloudinary.com/dskroppdq/image/upload/v1718671049/match_icon_xqqo4c.svg" alt="Smart Matching" class="feature-icon">
+                        <h3>Smart Matching</h3>
+                        <p>Our algorithm finds your most compatible matches.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="service-card">
+                        <div class="service-front">
+                            <img src="https://res.cloudinary.com/dskroppdq/image/upload/v1718671049/premium_icon_r6uh2u.svg" alt="Premium Membership" class="service-icon">
+                            <h3>Premium Membership</h3>
+                            <p>Unlock exclusive features and benefits.</p>
+                        </div>
+                        <div class="service-back">
+                            <h3>Premium Membership</h3>
+                            <p>Enjoy unlimited likes, advanced filters, and more!</p>
+                            <div class="price-tag">$29.99/month</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card">
+                        <div class="service-front">
+                            <img src="https://res.cloudinary.com/dskroppdq/image/upload/v1718671049/virtual_date_icon_r8oizw.svg" alt="Virtual Dates" class="service-icon">
+                            <h3>Virtual Dates</h3>
+                            <p>Connect virtually before meeting in person.</p>
+                        </div>
+                        <div class="service-back">
+                            <h3>Virtual Dates</h3>
+                            <p>Enjoy video calls and virtual experiences with your matches.</p>
+                            <div class="price-tag">Included</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-card">
+                        <div class="service-front">
+                            <img src="https://res.cloudinary.com/dskroppdq/image/upload/v1718671049/expert_advice_icon_u9ng2i.svg" alt="Dating Advice" class="service-icon">
+                            <h3>Dating Advice</h3>
+                            <p>Get expert advice to improve your dating life.</p>
+                        </div>
+                        <div class="service-back">
+                            <h3>Dating Advice</h3>
+                            <p>Access articles and tips from relationship experts.</p>
+                            <div class="price-tag">Free</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <h2>Testimonials</h2>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <img src="https://images.unsplash.com/photo-1503023345310-154ca56ab2c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8MA%3D%3D&w=500&q=80" alt="Sarah" class="testimonial-avatar">
+                            <p class="testimonial-text">"Connect helped me find the love of my life. I'm so grateful!"</p>
+                            <p class="testimonial-name">Sarah M.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aHVtYW58ZW58MHx8MHx8MA%3D%3D&w=500&q=80" alt="John" class="testimonial-avatar">
+                            <p class="testimonial-text">"The virtual date feature made it easy to connect with someone before meeting in person."</p>
+                            <p class="testimonial-name">John K.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGh1bWFufGVufDB8fDB8fDA%3D&w=500&q=80" alt="Emily" class="testimonial-avatar">
+                            <p class="testimonial-text">"I love how secure and safe Connect is. It's the perfect place to find a meaningful relationship."</p>
+                            <p class="testimonial-name">Emily L.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="contact-form">
+                        <form id="contactForm" action="#" method="POST" class="contact-form">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                                <label for="name" class="form-label">Your Name</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                                <label for="email" class="form-label">Your Email</label>
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" id="message" name="message" placeholder="Your Message" style="height: 150px" required></textarea>
+                                <label for="message" class="form-label">Your Message</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                        <div id="form-messages" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Connect. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+        });
+
+      // Contact Form Submission
+      document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        fetch('https://formspree.io/f/xleqkyyd', {  // Replace with your Formspree endpoint.
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+          .then(response => {
+            if (response.ok) {
+              // Success message
+              document.getElementById('form-messages').innerHTML = '<div class="alert alert-success">Thanks for your message!</div>';
+              form.reset();  // Clear the form
+            } else {
+              response.json().then(data => {
+                if (Object.hasOwn(data, 'errors')) {
+                  document.getElementById('form-messages').innerHTML = '<div class="alert alert-danger">Oops! There was a problem submitting your form</div>';
+                } else {
+                  document.getElementById('form-messages').innerHTML = '<div class="alert alert-danger">Oops! There was a problem submitting your form</div>';
+                }
+              })
+            }
+          })
+          .catch(error => {
+            // Error message
+            document.getElementById('form-messages').innerHTML = '<div class="alert alert-danger">Oops! There was a problem submitting your form</div>';
+          });
+      });
+
+    </script>
+</body>
+</html>

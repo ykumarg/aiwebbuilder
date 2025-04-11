@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatchPoint - Find Your Perfect Match</title>
+    <meta name="description" content="MatchPoint: Find meaningful connections and your perfect match on our dating website.">
+    <meta name="keywords" content="dating, online dating, relationships, love, match">
+    <meta name="author" content="Web Developer">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --accent-color: #ffc107;
+            --body-font: 'Poppins', sans-serif;
+        }
+
+        /* General Styles */
+        body {
+            font-family: var(--body-font);
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Spacing */
+        .py-5 {
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: var(--light-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark-color) !important;
+        }
+
+        .navbar-brand:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link {
+            color: var(--dark-color) !important;
+            font-weight: 500;
+            margin-left: 1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1496080142640-c9cc4b03f751?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            color: var(--light-color);
+            text-align: center;
+            padding: 10rem 0;
+        }
+
+        #hero h1 {
+            font-size: 3rem;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+
+        /* Features */
+        .feature-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* About/Services */
+        #about img, #services img {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #about ul, #services ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #about ul li, #services ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        #about ul li i, #services ul li i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+
+        /* Contact Form */
+        #contact form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .feature-card {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">MatchPoint</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="py-5">
+        <div class="container">
+            <h1 data-aos="fade-down">Find Your Perfect Match</h1>
+            <p data-aos="fade-up">Discover meaningful connections and embark on your journey to love.</p>
+            <a href="#contact" class="btn btn-primary btn-lg" data-aos="zoom-in">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-right">
+                    <div class="feature-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Intelligent Matching</h3>
+                        <p>Our advanced algorithm connects you with compatible profiles.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="feature-card">
+                        <i class="fas fa-comments"></i>
+                        <h3>Private Chat</h3>
+                        <p>Communicate securely with potential matches in a private chat environment.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-left">
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Safe and Secure</h3>
+                        <p>Your safety is our priority. We ensure a secure and respectful community.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1508214794196-4424bf0f293b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="About Us" class="img-fluid">
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <h2>About MatchPoint</h2>
+                    <p>At MatchPoint, our mission is to connect people in meaningful ways. We believe that everyone deserves to find love and companionship. Our platform provides a safe, secure, and user-friendly environment to explore relationships.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Personalized matchmaking</li>
+                        <li><i class="fas fa-check-circle"></i> Secure communication</li>
+                        <li><i class="fas fa-check-circle"></i> Dedicated support team</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6" data-aos="fade-right">
+                    <h2>Our Services</h2>
+                    <p>We offer a range of services to help you find the perfect match:</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Profile Creation Assistance</li>
+                        <li><i class="fas fa-check-circle"></i> Compatibility Analysis</li>
+                        <li><i class="fas fa-check-circle"></i> Date Planning Guides</li>
+                        <li><i class="fas fa-check-circle"></i> Relationship Advice</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da43577?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Our Services" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-down">Contact Us</h2>
+            <form id="contactForm" data-aos="fade-up" class="contact-form">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-3">
+        <div class="container">
+            <p>&copy; 2024 MatchPoint. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Simulate form submission and success message
+            alert('Thank you for your message! We will get back to you soon.');
+
+            // Clear the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find your perfect match with our modern dating website. Secure, reliable, and designed for meaningful connections.">
+    <meta name="keywords" content="dating website, online dating, find love, relationships, singles">
+    <meta name="author" content="Web Developer">
+    <title>Dating Website - Find Your Perfect Match</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #e7f2fa;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* ===== Typography ===== */
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        /* ===== Navigation ===== */
+        .navbar {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-color);
+            margin-left: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* ===== Hero Section ===== */
+        #hero {
+            background-image: url('https://images.unsplash.com/photo-1496181160206-d7ceb4a504b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 10rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        #hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        #hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+
+        /* ===== Features Section ===== */
+        #features {
+            padding: 5rem 0;
+            background-color: var(--light-gray);
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== About Section ===== */
+        #about, #services {
+            padding: 5rem 0;
+        }
+
+        #about .row, #services .row {
+            align-items: center;
+        }
+
+        #about img, #services img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #about ul, #services ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #about li, #services li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        #about li::before, #services li::before {
+            content: '\f00c'; /* Font Awesome checkmark */
+            font-family: FontAwesome;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        /* ===== Contact Section ===== */
+        #contact {
+            padding: 5rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        #contact h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        #contact .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        #contact label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        #contact input,
+        #contact textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        #contact textarea {
+            resize: vertical;
+        }
+
+        #contact button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #contact button:hover {
+            background-color: #2980b9;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* ===== Media Queries ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            #hero h1 {
+                font-size: 3rem;
+            }
+
+            #hero p {
+                font-size: 1.2rem;
+            }
+        }
+
+        .hidden {
+           opacity: 0;
+           transition: all 2s;
+       }
+
+       .show {
+           opacity: 1;
+       }
+
+       .slide-in-from-left {
+           transform: translateX(-100%);
+           transition: transform 2s;
+       }
+
+       .slide-in-from-right {
+           transform: translateX(100%);
+           transition: transform 2s;
+       }
+
+       .slide-in-bottom {
+           transform: translateY(100%);
+           transition: transform 2s;
+       }
+
+       .slide-in-top {
+           transform: translateY(-100%);
+           transition: transform 2s;
+       }
+
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Dating</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <h1 class="slide-in-bottom">Find Your Perfect Match</h1>
+            <p class="slide-in-top">Connect with like-minded individuals and start your journey to love.</p>
+            <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card hidden">
+                        <i class="fas fa-heart"></i>
+                        <h3>Meaningful Connections</h3>
+                        <p>Find genuine connections based on shared interests and values.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card hidden">
+                        <i class="fas fa-lock"></i>
+                        <h3>Secure & Private</h3>
+                        <p>Your safety and privacy are our top priorities. Enjoy a secure dating environment.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card hidden">
+                        <i class="fas fa-users"></i>
+                        <h3>Large Community</h3>
+                        <p>Join a vibrant community of singles looking for love and friendship.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd6ca6dc8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2175&q=80" alt="About Us" class="img-fluid">
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <h2>About Our Dating Website</h2>
+                    <p>We are dedicated to helping you find meaningful relationships. Our platform is designed to make online dating easy, safe, and enjoyable.</p>
+                    <ul>
+                        <li>Easy to Use Interface</li>
+                        <li>Advanced Matching Algorithms</li>
+                        <li>24/7 Customer Support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <h2>Our Services</h2>
+                    <p>We offer a range of services to help you find your perfect match:</p>
+                    <ul>
+                        <li>Personalized Profile Creation</li>
+                        <li>Advanced Search Filters</li>
+                        <li>Secure Messaging System</li>
+                        <li>Dating Tips and Advice</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1516726901168-e0cae37736e4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="Our Services" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    <div id="form-message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Dating Website. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1200,
+      })
+    </script>
+    <script>
+      window.addEventListener('scroll', reveal);
+      function reveal() {
+          var reveals = document.querySelectorAll('.hidden');
+
+          for(var i = 0; i < reveals.length; i++) {
+              var windowheight = window.innerHeight;
+              var revealtop = reveals[i].getBoundingClientRect().top;
+              var revealpoint = 150;
+
+              if(revealtop < windowheight - revealpoint) {
+                  reveals[i].classList.add('show');
+              } else {
+                  reveals[i].classList.remove('show');
+              }
+          }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contactForm');
+        const formMessage = document.getElementById('form-message');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+
+            // Simulate an AJAX request (replace with actual AJAX call)
+            setTimeout(() => {
+                // Assume the form submission was successful
+                formMessage.textContent = 'Thank you! Your message has been received.';
+                formMessage.style.color = 'green';
+
+                // Clear the form fields
+                form.reset();
+
+                // Optionally, hide the message after a few seconds
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                }, 5000);
+            }, 1000); // Simulate a 1-second delay
+        });
+    });
+
+
+    </script>
+</body>
+</html>

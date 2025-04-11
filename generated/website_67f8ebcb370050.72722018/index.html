@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your Match | Modern Dating Website</title>
+  <meta name="description" content="Find love and meaningful connections on our modern dating platform. Sign up today!">
+  <meta name="keywords" content="dating, online dating, love, relationships, singles, find love">
+  <meta name="author" content="AI Web Developer">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <style>
+    /* CSS Reset */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Colors */
+      --primary-color: #ff5e62;
+      --secondary-color: #3f51b5;
+      --accent-color: #ffca28;
+      --text-color: #333;
+      --light-text-color: #fff;
+      --bg-color: #f9f9f9;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+
+      /* Fonts */
+      --main-font: 'Roboto', sans-serif;
+      --heading-font: 'Montserrat', sans-serif;
+
+      /* Spacing */
+      --section-padding: 60px;
+    }
+
+    body {
+      font-family: var(--main-font);
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      line-height: 1.6;
+    }
+
+    /* General Styles */
+    a {
+      text-decoration: none;
+      color: var(--primary-color);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: var(--section-padding) 0;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      color: var(--text-color);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    h3 {
+      font-size: 2rem;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: var(--light-text-color);
+      padding: 20px 0;
+      box-shadow: 0 2px 4px var(--shadow-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-links li {
+      margin-left: 20px;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      transition: color 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Hero Section */
+    #home {
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://images.unsplash.com/photo-1496345875659-1109e28247d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80") center/cover no-repeat;
+      color: var(--light-text-color);
+      text-align: center;
+      padding: 150px 0;
+    }
+
+    #home h1 {
+      color: var(--light-text-color);
+      font-size: 4rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-text {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: var(--light-text-color);
+      padding: 12px 24px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #d6336c;
+    }
+
+    /* About Section */
+    #about {
+      text-align: center;
+    }
+
+    /* Services Section */
+    #services {
+      background-color: #fff;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background-color: var(--light-text-color);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px var(--shadow-color);
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .service-icon:hover {
+      transform: scale(1.2);
+    }
+
+    .service-card h3 {
+      margin-bottom: 15px;
+    }
+
+    /* Contact Section */
+    #contact {
+      background-color: var(--bg-color);
+    }
+
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: var(--main-font);
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    .btn-submit {
+      background-color: var(--secondary-color);
+      color: var(--light-text-color);
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #303f9f;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #222;
+      color: var(--light-text-color);
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 3rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .nav-links {
+        display: none; /* Hide navigation on smaller screens - JS will handle it later if needed*/
+      }
+      .navbar{
+        display: block;
+      }
+      .logo {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle image loading errors
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            // Get image dimensions
+            const width = this.getAttribute('width') || this.clientWidth || 800;
+            const height = this.getAttribute('height') || this.clientHeight || 400;
+            // Set default image based on context
+            let category = 'business';
+            if (this.alt && this.alt.toLowerCase().includes('profile')) category = 'people';
+            if (this.alt && this.alt.toLowerCase().includes('team')) category = 'people';
+            if (this.alt && this.alt.toLowerCase().includes('service')) category = 'technology';
+            if (this.alt && this.alt.toLowerCase().includes('about')) category = 'office';
+            // Use Unsplash for high-quality default images
+            this.src = `https://source.unsplash.com/x/?`;
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <div class="navbar">
+        <a href="#" class="logo">FindYourMatch</a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home">
+    <div class="container">
+      <h1>Find Your Perfect Match</h1>
+      <p class="hero-text">Discover meaningful connections and lasting relationships on our modern dating platform.</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>We are dedicated to helping singles find love and companionship. Our platform offers a safe and user-friendly environment to connect with like-minded individuals.  Our advanced matching algorithms and comprehensive profiles ensure that you find the most compatible matches. Join us today and start your journey to find your perfect partner.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card" data-aos="fade-up">
+          <i class="fas fa-heart service-icon"></i>
+          <h3>Personalized Matching</h3>
+          <p>We use advanced algorithms to match you with compatible partners based on your interests and preferences.</p>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-comments service-icon"></i>
+          <h3>Private Messaging</h3>
+          <p>Connect with your matches through our secure and private messaging system.</p>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-shield-alt service-icon"></i>
+          <h3>Verified Profiles</h3>
+          <p>We verify all profiles to ensure a safe and trustworthy environment for our users.</p>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-calendar-alt service-icon"></i>
+          <h3>Event & Activity Recommendations</h3>
+          <p>Find fun local events and activities to connect with new people in person.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form class="contact-form" class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 FindYourMatch. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true
+      });
+
+       // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

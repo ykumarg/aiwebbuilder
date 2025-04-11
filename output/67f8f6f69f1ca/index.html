@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handmade Jewelry E-commerce</title>
+    <meta name="description" content="Modern e-commerce website for handmade jewelry.">
+    <meta name="keywords" content="handmade jewelry, e-commerce, jewelry shop">
+    <meta name="author" content="Your Name">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #f8f9fa;
+            --secondary-color: #ffffff;
+            --accent-color: #007bff;
+            --text-color: #343a40;
+            --light-gray: #e9ecef;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: var(--secondary-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-color);
+            margin-left: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://placehold.co/1920x1080') center/cover no-repeat;
+            color: var(--secondary-color);
+            text-align: center;
+            padding: 8rem 0;
+            position: relative;
+        }
+
+         .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for the desired darkness */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+        }
+
+        .feature-card {
+            border: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            background-color: var(--secondary-color);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* About/Services Section */
+        .about, .services {
+            padding: 4rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        .about-img, .services-img {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-text, .services-text {
+            padding: 2rem;
+        }
+
+        .about-text h2, .services-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text ul, .services-text ul {
+            padding-left: 1.5rem;
+        }
+
+        .about-text li, .services-text li {
+            margin-bottom: 0.5rem;
+        }
+
+          /* Gallery Section */
+        .gallery {
+            padding: 4rem 0;
+        }
+
+        .gallery-item {
+            margin-bottom: 1.5rem;
+             overflow: hidden; /* Ensures the image stays within the rounded border */
+             border-radius: 0.5rem;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease; /* Smooth transition for zoom effect */
+        }
+
+         .gallery-item:hover img {
+            transform: scale(1.1); /* Slightly zoom in on hover */
+        }
+
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 4rem 0;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+
+        .testimonial-card {
+            background-color: var(--secondary-color);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card cite {
+            font-weight: bold;
+        }
+
+        /* Contact Form */
+        .contact {
+            padding: 4rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        .contact-form {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            border-radius: 0.25rem;
+            border: 1px solid var(--light-gray);
+            padding: 0.75rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: none;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--text-color);
+            color: var(--primary-color);
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-img, .services-img {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Jewelry Haven</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+        <div class="container">
+            <h1 class="fade-in">Discover Exquisite Handmade Jewelry</h1>
+            <p class="fade-in">Find unique, handcrafted pieces that reflect your individual style. Explore our collection and find the perfect piece to cherish forever.</p>
+            <a href="#gallery" class="btn btn-primary btn-lg fade-in">View Collection</a>
+        </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card" data-aos="fade-up">
+                        <i class="fas fa-gem"></i>
+                        <h3>Unique Designs</h3>
+                        <p>Each piece is uniquely designed and handcrafted with passion and attention to detail.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h3>Handmade with Love</h3>
+                        <p>Crafted with care using high-quality materials, ensuring durability and lasting beauty.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3>Fast Shipping</h3>
+                        <p>Enjoy fast and reliable shipping to your doorstep, ensuring your treasures arrive safely.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <img src="https://placehold.co/600x400" alt="About Us" class="img-fluid about-img">
+                </div>
+                <div class="col-md-6 about-text" data-aos="fade-left">
+                    <h2>About Our Craft</h2>
+                    <p>We are passionate artisans dedicated to creating exquisite, handmade jewelry that embodies elegance and individuality. Each piece is crafted with precision and care, using only the finest materials.</p>
+                    <ul>
+                        <li>Unique and handcrafted designs</li>
+                        <li>High-quality materials</li>
+                        <li>Passionate and skilled artisans</li>
+                        <li>Attention to detail</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="text-center mb-4">Our Gallery</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in">
+                        <img src="https://placehold.co/600x400/EEE/31343C" alt="Jewelry 1" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="https://placehold.co/600x400/DDD/31343C" alt="Jewelry 2" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                        <img src="https://placehold.co/600x400/CCC/31343C" alt="Jewelry 3" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in">
+                        <img src="https://placehold.co/600x400/BBB/31343C" alt="Jewelry 4" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="https://placehold.co/600x400/AAA/31343C" alt="Jewelry 5" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                        <img src="https://placehold.co/600x400/999/31343C" alt="Jewelry 6" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="text-center mb-4">What Our Customers Say</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="testimonial-card" data-aos="fade-up">
+                        <p>"I absolutely love my new necklace! The craftsmanship is stunning, and it's even more beautiful in person."</p>
+                        <cite>Jane Doe</cite>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                        <p>"The earrings I ordered were the perfect gift for my wife. She was so happy with the unique design and quality."</p>
+                        <cite>John Smith</cite>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <img src="https://placehold.co/600x400" alt="Our Services" class="img-fluid services-img">
+                </div>
+                <div class="col-md-6 services-text" data-aos="fade-left">
+                    <h2>Our Services</h2>
+                    <p>We offer a range of services to ensure you find the perfect piece and have a delightful shopping experience. Explore our range of options.</p>
+                    <ul>
+                        <li>Custom jewelry design</li>
+                        <li>Jewelry repair and restoration</li>
+                        <li>Personalized consultations</li>
+                        <li>Gift wrapping services</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="text-center mb-4">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form class="contact-form" id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                    <div id="successMessage" style="display: none; margin-top: 10px; color: green;">Thank you! Your message has been sent.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Jewelry Haven. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+          duration: 1000,
+          once: true
+      });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // You can add form validation here if needed
+
+            // Simulate sending the form (replace with actual AJAX request)
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('contactForm').reset(); // Clear the form
+            }, 500); // Simulate a 0.5 second delay
+
+            // Hide the success message after a few seconds (optional)
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000); // Hide after 5 seconds
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional web developer offering stunning dating website solutions. Modern design, mobile-responsive, SEO-friendly.">
+    <meta name="keywords" content="web developer, dating website, responsive design, SEO, contact form">
+    <meta name="author" content="[Your Name]">
+    <title>Dating Website Developer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa; /* Light gray background */
+            color: #343a40; /* Dark gray text */
+        }
+
+        /* Variables */
+        :root {
+            --primary-color: #007bff; /* Bootstrap primary blue */
+            --secondary-color: #6c757d; /* Bootstrap secondary gray */
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        /* General Styles */
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--light-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .navbar-brand:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1508700932243-fe41f137f136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--light-color);
+            text-align: center;
+            padding: 10rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background-color: var(--light-color);
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* About & Services Sections */
+        .about, .services {
+            padding: 4rem 0;
+        }
+
+        .about-img, .services-img {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-text, .services-text {
+            padding: 2rem;
+        }
+
+        .about-text h2, .services-text h2 {
+            margin-bottom: 1rem;
+        }
+
+        .about-text ul, .services-text ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-text li, .services-text li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2em;
+        }
+
+        .about-text li::before, .services-text li::before {
+            content: "\f00c"; /* Font Awesome checkmark */
+            font-family: FontAwesome;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        /* Contact Form */
+        .contact {
+            padding: 4rem 0;
+            background-color: #e9ecef; /* Light gray */
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--light-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da; /* Bootstrap border color */
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-img, .services-img {
+                margin-bottom: 2rem;
+            }
+        }
+
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">WebDev Solutions</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Build Your Perfect Dating Website</h1>
+            <p>Let me help you create a stunning and engaging dating platform that attracts users and fosters meaningful connections.</p>
+            <a href="#contact" class="btn">Get a Quote</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="feature-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Clean Code</h3>
+                        <p>Well-structured and maintainable code for long-term success.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Responsive Design</h3>
+                        <p>Seamless experience on all devices, from desktop to mobile.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Fast Performance</h3>
+                        <p>Optimized for speed to ensure a smooth user experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1517245386804-bb43f98ccaa7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="About Me" class="about-img">
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="about-text">
+                        <h2>About Me</h2>
+                        <p>I am a professional web developer with years of experience in creating stunning and functional websites. I specialize in dating websites, ensuring they are user-friendly, visually appealing, and optimized for conversions.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Expert in dating website development</li>
+                            <li><i class="fas fa-check"></i> Mobile-first and responsive design</li>
+                            <li><i class="fas fa-check"></i> SEO optimization for visibility</li>
+                            <li><i class="fas fa-check"></i> Focus on user experience</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="services-text">
+                        <h2>My Services</h2>
+                        <p>I offer a range of services to help you create the perfect dating website, from initial design to ongoing maintenance and support.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Custom dating website design</li>
+                            <li><i class="fas fa-check"></i> User interface (UI) and user experience (UX) design</li>
+                            <li><i class="fas fa-check"></i> Database and backend development</li>
+                            <li><i class="fas fa-check"></i> Integration with payment gateways</li>
+                            <li><i class="fas fa-check"></i> Ongoing maintenance and support</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1560628262-e3c2f90d29a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Services" class="services-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <div class="contact-form">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <div id="formMessage" style="margin-top:10px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            &copy; 2024 WebDev Solutions. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const formMessage = document.getElementById('formMessage');
+
+            // Simulate form submission (replace with actual AJAX call in a real application)
+            setTimeout(() => {
+                formMessage.textContent = 'Message sent successfully!';
+                formMessage.style.color = 'green';
+                document.getElementById('contactForm').reset();
+            }, 1000); // Simulate a 1-second delay
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Match - A Modern Dating Website</title>
+    <meta name="description" content="Find love and companionship with our modern dating website. Join our community and start connecting today!">
+    <meta name="keywords" content="dating, online dating, relationships, love, companionship, singles, match">
+    <meta name="author" content="AI Web Developer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff69b4; /* Hot Pink */
+            --secondary-color: #6a5acd; /* Slate Blue */
+            --accent-color: #f0e68c; /* Khaki */
+            --text-color: #333;
+            --background-color: #f9f9f9;
+            --light-gray: #ddd;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--box-shadow);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1496080142646-52b896222c4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 10rem 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background-color: #e6007a; /* Darker Pink */
+        }
+
+        /* About Section */
+        #about, #services, #contact {
+            padding: 4rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        #about h2, #services h2, #contact h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        #about p {
+            font-size: 1.1rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form label {
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.75rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #483d8b; /* Darker Slate Blue */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                margin-top: 1rem;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* AOS Animation Styles */
+        [data-aos="fade-up"] {
+            transform: translateY(50px);
+            opacity: 0;
+            transition-property: transform, opacity;
+            transition-duration: 0.8s;
+        }
+
+        [data-aos="fade-up"].aos-animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Custom animations */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <a href="#" class="logo">FindYourMatch</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="hero">
+        <div class="hero-content">
+            <h1 data-aos="fade-up" class="fade-in">Find Your Perfect Match Today</h1>
+            <p data-aos="fade-up" class="fade-in">Join our exclusive dating community and discover meaningful connections.</p>
+            <a href="#contact" class="cta-button fade-in" data-aos="fade-up">Get Started</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2 data-aos="fade-up">About Us</h2>
+        <p data-aos="fade-up">
+            Welcome to FindYourMatch, where finding love and building meaningful relationships is our top priority. We understand that in today's fast-paced world, it can be challenging to meet like-minded individuals who share your values and interests. That's why we've created a modern and intuitive platform designed to help you connect with your perfect match.
+        </p>
+        <p data-aos="fade-up">
+            Our team of dedicated professionals is passionate about creating a safe and enjoyable online dating experience for all our members. We use advanced matching algorithms and personalized profiles to ensure that you're connecting with compatible individuals who are genuinely looking for a lasting relationship.
+        </p>
+        <p data-aos="fade-up">
+            Join our community today and start your journey towards finding the love and companionship you deserve. With FindYourMatch, you're one step closer to discovering your happily ever after.
+        </p>
+    </section>
+
+    <section id="services">
+        <h2 data-aos="fade-up">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-user-check"></i>
+                <h3>Personalized Matching</h3>
+                <p>Our advanced algorithm matches you with compatible individuals based on your preferences and interests.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-comments"></i>
+                <h3>Interactive Chat</h3>
+                <p>Engage in real-time conversations and get to know your matches better through our intuitive chat interface.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Safe & Secure</h3>
+                <p>Your safety and privacy are our top priorities. We employ strict security measures to protect your personal information.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-heart"></i>
+                <h3>Relationship Advice</h3>
+                <p>Get expert advice and tips on building and maintaining healthy, fulfilling relationships.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 data-aos="fade-up">Contact Us</h2>
+        <form class="contact-form" data-aos="fade-up" class="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        &copy; 2024 FindYourMatch. All rights reserved.
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // AOS initialization
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>

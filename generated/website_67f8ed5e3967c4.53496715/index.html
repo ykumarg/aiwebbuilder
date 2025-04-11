@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find your perfect match with our modern dating website. Join now and start connecting with compatible singles.">
+    <meta name="keywords" content="dating, online dating, singles, love, relationships, match, dating website">
+    <meta name="author" content="AI Web Developer">
+    <title>Spark - Find Your Match</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF4500; /* Dark Orange */
+            --secondary-color: #FF6347; /* Tomato */
+            --accent-color: #FFA07A; /* Light Salmon */
+            --background-color: #f9f9f9;
+            --text-color: #333;
+            --light-text-color: #777;
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+        }
+
+        p {
+            color: var(--light-text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Layout */
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .menu li {
+            margin-left: 2rem;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+            padding: 10rem 0;
+        }
+
+        #hero h1 {
+            color: #fff;
+            font-size: 4rem;
+        }
+
+        #hero p {
+            color: #eee;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* About Section */
+        #about {
+            background-color: #fff;
+        }
+
+        #about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        #about img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Services Section */
+        #services {
+            background-color: var(--background-color);
+        }
+
+        #services .container {
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #fff;
+        }
+
+        #contact .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        #contact-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #contact-form label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        #contact-form input,
+        #contact-form textarea {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: var(--font-family);
+        }
+
+        #contact-form textarea {
+            resize: vertical;
+        }
+
+        #contact-form button {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        #contact-form button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            #hero {
+                padding: 5rem 0;
+            }
+
+            #hero h1 {
+                font-size: 3rem;
+            }
+
+            .menu {
+                display: none;
+            }
+
+            #about .container,
+            #contact .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animate On Scroll */
+        [data-aos] {
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+        }
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Spark</a>
+            <ul class="menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container">
+            <h1>Find Your Perfect Match</h1>
+            <p>Join our community and start connecting with compatible singles today.</p>
+            <a href="#" class="btn">Sign Up Now</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div data-aos="fade-right">
+                <h2>About Us</h2>
+                <p>We are dedicated to helping people find meaningful connections and lasting relationships. Our
+                    platform offers a safe and user-friendly environment for singles to meet, chat, and discover their
+                    perfect match.</p>
+                <p>With advanced matching algorithms and a focus on compatibility, we strive to provide a positive
+                    and successful online dating experience.</p>
+            </div>
+            <div data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1508214794377-6251d2e8316a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                    alt="Dating Couple">
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <p>We offer a range of services to help you find your ideal partner.</p>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up">
+                    <i class="fas fa-heart"></i>
+                    <h3>Advanced Matching</h3>
+                    <p>Our advanced algorithms match you with compatible singles based on your interests and
+                        preferences.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-comments"></i>
+                    <h3>Private Messaging</h3>
+                    <p>Enjoy secure and private messaging to get to know your matches better.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safety & Security</h3>
+                    <p>We prioritize your safety and security with robust verification and moderation systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div data-aos="fade-right">
+                <h2>Contact Us</h2>
+                <p>Have questions or need assistance? Contact us using the form below.</p>
+            </div>
+            <div data-aos="fade-left">
+                <form id="contact-form" class="contact-form">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            &copy; 2024 Spark Dating. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 700,
+            once: true
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

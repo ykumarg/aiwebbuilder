@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handmade Jewelry E-commerce</title>
+    <meta name="description" content="Modern e-commerce website for handmade jewelry. Discover unique, handcrafted pieces.">
+    <meta name="keywords" content="handmade jewelry, e-commerce, handcrafted, jewelry, unique">
+    <meta name="author" content="Your Name">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #f2f2f2;
+            --text-color: #333;
+            --accent-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            margin-left: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1523275335684-37898b6baf0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2099&q=80') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+            padding: 8rem 0;
+        }
+
+        #hero h1 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+
+        /* Features Section */
+        #features {
+            padding: 4rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* About/Services Section */
+        #about, #services {
+            padding: 4rem 0;
+        }
+
+        #about .row, #services .row {
+            align-items: center;
+        }
+
+        #about img, #services img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        /* Contact Form */
+        #contact {
+            padding: 4rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-color);
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        /* Gallery Section */
+        #gallery {
+            padding: 4rem 0;
+        }
+
+        .gallery-item {
+            margin-bottom: 1rem;
+            overflow: hidden; /* Ensures the image doesn't overflow its container */
+            border-radius: 5px; /* Optional: Rounds the corners of the image */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+            transition: transform 0.3s ease; /* Optional: Adds a smooth transition for the hover effect */
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05); /* Optional: Slightly zooms in on hover */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block; /* Ensures no extra space below the image */
+            object-fit: cover; /* Ensures images fill the container without distortion */
+            aspect-ratio: 1/1;
+        }
+        #testimonials {
+            padding: 4rem 0;
+            background-color: #f9f9f9;
+        }
+
+        .testimonial {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #fff;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: #555;
+        }
+
+        .testimonial .author {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 1rem;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Jewelry Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <h1 data-aos="fade-down">Exquisite Handmade Jewelry</h1>
+            <p data-aos="fade-up">Discover unique, handcrafted pieces that reflect your style.</p>
+            <a href="#gallery" class="btn btn-primary" data-aos="zoom-in">Explore Our Collection</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-right">
+                    <div class="feature-card">
+                        <i class="fas fa-gem"></i>
+                        <h3>Unique Designs</h3>
+                        <p>Each piece is carefully crafted with unique designs and high-quality materials.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="feature-card">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h3>Handcrafted with Love</h3>
+                        <p>Our jewelry is handcrafted with passion and dedication, ensuring exceptional quality.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-left">
+                    <div class="feature-card">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3>Fast & Secure Shipping</h3>
+                        <p>Enjoy fast and secure shipping options to receive your jewelry safely and promptly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1585209547176-55b413c2f69b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="About Us" class="img-fluid">
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <h2>About Our Craft</h2>
+                    <p>We are passionate about creating beautiful, handcrafted jewelry that tells a story. Our mission is to provide unique and high-quality pieces that you will cherish for years to come.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Unique and original designs</li>
+                        <li><i class="fas fa-check-circle"></i> High-quality materials</li>
+                        <li><i class="fas fa-check-circle"></i> Handcrafted with care</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="text-center" data-aos="fade-down">Our Jewelry Collection</h2>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-right">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1598511592956-a7a7834a6e85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Jewelry 1">
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1607647344551-1c03b6b89a62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Jewelry 2">
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-left">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1630345066808-d7e4545886dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Jewelry 3">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-right">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1610789339846-9641a1ffb244?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Jewelry 4">
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1624661306762-a5f08e20077f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Jewelry 5">
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-left">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1631795645296-6301330b866b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Jewelry 6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+     <section id="testimonials">
+        <div class="container">
+            <h2 class="text-center" data-aos="fade-down">Customer Testimonials</h2>
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="testimonial">
+                        <p>"I absolutely love my new necklace! The quality is amazing and the design is so unique. I get compliments every time I wear it."</p>
+                        <p class="author">- Sarah J.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="testimonial">
+                        <p>"The earrings I purchased are even more beautiful in person. The craftsmanship is exceptional and the customer service was outstanding."</p>
+                        <p class="author">- Michael K.</p>
+                    </div>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="testimonial">
+                        <p>"I absolutely love my new necklace! The quality is amazing and the design is so unique. I get compliments every time I wear it."</p>
+                        <p class="author">- Emily L.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="testimonial">
+                        <p>"The earrings I purchased are even more beautiful in person. The craftsmanship is exceptional and the customer service was outstanding."</p>
+                        <p class="author">- David S.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="text-center" data-aos="fade-down">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form id="contactForm" onsubmit="return validateForm()" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
+                            <small id="nameError" class="text-danger"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
+                            <small id="emailError" class="text-danger"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message"></textarea>
+                             <small id="messageError" class="text-danger"></small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Jewelry Shop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+         function validateForm() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("message").value;
+            let nameError = document.getElementById("nameError");
+            let emailError = document.getElementById("emailError");
+            let messageError = document.getElementById("messageError");
+
+            nameError.textContent = "";
+            emailError.textContent = "";
+            messageError.textContent = "";
+
+            let isValid = true;
+
+            if (name === "") {
+                nameError.textContent = "Name is required";
+                isValid = false;
+            }
+
+            if (email === "") {
+                emailError.textContent = "Email is required";
+                isValid = false;
+            } else if (!isValidEmail(email)) {
+                emailError.textContent = "Invalid email format";
+                isValid = false;
+            }
+
+            if (message === "") {
+                messageError.textContent = "Message is required";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</body>
+</html>

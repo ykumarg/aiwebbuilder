@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatchMade - Find Your Perfect Connection</title>
+    <meta name="description" content="MatchMade: Modern dating website. Find meaningful connections with our sophisticated platform. Join today!">
+    <meta name="keywords" content="dating, online dating, relationships, love, connection, match">
+    <meta name="author" content="Your Name">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variables */
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #f4436b;
+            --accent-color: #ffd700;
+            --text-color: #333;
+            --light-text-color: #eee;
+            --bg-color: #f9f9f9;
+            --light-bg-color: #fff;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--light-bg-color);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1508768787810-6adc1b0b0719?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 10rem 0;
+        }
+
+        #hero h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--light-bg-color);
+            box-shadow: var(--box-shadow);
+        }
+
+        #about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        #about img {
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Services Section */
+        #services {
+            background-color: var(--bg-color);
+        }
+
+        #services .container {
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background-color: var(--light-bg-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .service-card:hover i {
+            color: var(--secondary-color);
+        }
+
+        .service-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--light-bg-color);
+            box-shadow: var(--box-shadow);
+        }
+
+        #contact .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        #contact form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #contact form label {
+            margin-bottom: 0.5rem;
+        }
+
+        #contact form input,
+        #contact form textarea {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        #contact form textarea {
+            resize: vertical;
+        }
+
+        #contact form .btn {
+            align-self: flex-start;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            nav .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 0.5rem;
+            }
+
+            #hero h1 {
+                font-size: 3rem;
+            }
+
+            #about .container,
+            #contact .container {
+                grid-template-columns: 1fr;
+            }
+
+            #about img {
+                order: -1;
+            }
+        }
+
+        /* AOS Animations */
+        [data-aos="fade-up"] {
+            transform: translateY(50px);
+            opacity: 0;
+            transition-property: transform, opacity;
+        }
+
+        [data-aos="fade-up"].aos-animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle image loading errors
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            // Get image dimensions
+            const width = this.getAttribute('width') || this.clientWidth || 800;
+            const height = this.getAttribute('height') || this.clientHeight || 400;
+            // Set default image based on context
+            let category = 'business';
+            if (this.alt && this.alt.toLowerCase().includes('profile')) category = 'people';
+            if (this.alt && this.alt.toLowerCase().includes('team')) category = 'people';
+            if (this.alt && this.alt.toLowerCase().includes('service')) category = 'technology';
+            if (this.alt && this.alt.toLowerCase().includes('about')) category = 'office';
+            // Use Unsplash for high-quality default images
+            this.src = `https://source.unsplash.com/x/?`;
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">MatchMade</a>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container">
+            <h1 data-aos="fade-up" data-aos-duration="1000">Find Your Perfect Connection</h1>
+            <p data-aos="fade-up" data-aos-duration="1200">Join our exclusive dating community and discover meaningful relationships.</p>
+            <a href="#contact" class="btn" data-aos="fade-up" data-aos-duration="1400">Get Started</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <img src="https://images.unsplash.com/photo-1522204521235-ce5dca6f05b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80" alt="About Us" data-aos="fade-right" data-aos-duration="1000">
+            <div data-aos="fade-left" data-aos-duration="1000">
+                <h2>About MatchMade</h2>
+                <p>At MatchMade, we believe that everyone deserves to find love and connection. Our platform is designed to help you discover meaningful relationships with like-minded individuals.</p>
+                <p>We use advanced matching algorithms and a user-friendly interface to ensure that you have the best possible dating experience. Join us today and start your journey to finding your perfect match.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 data-aos="fade-up" data-aos-duration="1000">Our Services</h2>
+            <p data-aos="fade-up" data-aos-duration="1200">We offer a range of services to help you find the perfect match and build lasting relationships.</p>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-duration="1000">
+                    <i class="fas fa-heart"></i>
+                    <h3>Personalized Matching</h3>
+                    <p>Our advanced algorithms connect you with compatible individuals based on your interests, values, and preferences.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-duration="1200">
+                    <i class="fas fa-comments"></i>
+                    <h3>Private Chat</h3>
+                    <p>Communicate directly with potential matches in a secure and private environment.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-duration="1400">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Date Planning</h3>
+                    <p>Get expert advice on planning memorable and enjoyable dates to strengthen your connections.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div data-aos="fade-right" data-aos-duration="1000">
+                <h2>Contact Us</h2>
+                <p>Have questions or need assistance? Reach out to us, and we'll be happy to help!</p>
+                <img src="https://images.unsplash.com/photo-1556761175-4cbb04ae7f06?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Contact Us">
+            </div>
+            <form data-aos="fade-left" data-aos-duration="1000" class="contact-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MatchMade. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

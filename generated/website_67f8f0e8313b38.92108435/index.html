@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Selling Website</title>
+    <meta name="description" content="Create your own mobile selling website with our professional web development services.">
+    <meta name="keywords" content="mobile selling website, web development, responsive design, e-commerce">
+    <meta name="author" content="AI Web Developer">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa; /* Light grey background */
+            color: #333; /* Dark grey text */
+            overflow-x: hidden;
+        }
+
+        /* CSS Custom Properties */
+        :root {
+            --primary-color: #667eea; /* Light purple */
+            --secondary-color: #764ba2; /* Darker purple */
+            --accent-color: #00bcd4; /* Teal */
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --neumorphic-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #fff;
+            --neumorphic-shadow-inset: inset 6px 6px 10px #d1d9e6, inset -6px -6px 10px #fff;
+
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            max-width: 1200px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-padding {
+            padding: clamp(4rem, 8vw, 8rem) 0;
+        }
+
+        /* Glassmorphism Navbar */
+        .navbar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .navbar-brand {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: #fff !important;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+            z-index: 1;
+        }
+
+        #hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        #hero .container {
+            z-index: 2;
+        }
+
+        #hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #hero p {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--neumorphic-shadow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--neumorphic-shadow-inset);
+        }
+
+        /* Features Section */
+        #features {
+            background: linear-gradient(to bottom, #eef2f3, #fff);
+        }
+
+        .feature-card {
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--neumorphic-shadow);
+            background: #e0e5ec;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--neumorphic-shadow-inset);
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .lottie-icon {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        /* Services Section */
+        #services {
+            background: linear-gradient(to bottom, #fff, #eef2f3);
+        }
+
+        .service-card {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            margin-bottom: 30px;
+            perspective: 1000px;
+        }
+
+        .service-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .service-card:hover .service-inner {
+            transform: rotateY(180deg);
+        }
+
+        .service-front,
+        .service-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .service-front {
+            background-color: #fff;
+            color: #333;
+        }
+
+        .service-back {
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            color: #fff;
+            transform: rotateY(180deg);
+        }
+
+        .service-front h3,
+        .service-back h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-price {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+             background: linear-gradient(to bottom, #eef2f3, #fff);
+        }
+        .swiper {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .swiper-slide {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: var(--neumorphic-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .testimonial-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-name {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(to bottom, #fff, #eef2f3);
+        }
+
+        .contact-form {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--neumorphic-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-control {
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 1.1rem;
+            box-shadow: var(--neumorphic-shadow-inset);
+            background: #e0e5ec;
+        }
+
+        .form-control:focus {
+            outline: none;
+            box-shadow: var(--neumorphic-shadow);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: #555;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            background-color: #e0e5ec;
+            padding: 0 5px;
+        }
+
+        .form-control:focus + .form-label,
+        .form-control:valid + .form-label {
+            top: -10px;
+            left: 10px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--neumorphic-shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--neumorphic-shadow-inset);
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 4rem;
+            }
+
+            .service-card {
+                height: auto; /* Remove fixed height for smaller screens */
+            }
+
+            .service-inner {
+                transform: none !important; /* Disable flip on smaller screens */
+            }
+
+            .service-front,
+            .service-back {
+                position: relative;
+                backface-visibility: visible;
+                transform: none;
+            }
+            .service-back{
+                background: var(--glass-bg);
+                backdrop-filter: blur(5px);
+                color: #fff;
+                transform: rotateY(0deg);
+            }
+            .navbar-toggler {
+                background-color: rgba(255, 255, 255, 0.1) !important;
+            }
+
+            .navbar-toggler-icon {
+                color: #fff !important;
+            }
+        }
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Mobile Selling</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <video autoplay loop muted playsinline>
+            <source src="https://player.vimeo.com/external/323589493.sd.mp4?s=b19f5c2e1c9f6a6e459b4f35a6ca92d40a4754e9&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="container">
+            <h1 class="gradient-text">Create Your Mobile Selling Website</h1>
+            <p>Launch your online store with a stunning, responsive website tailored for mobile selling.</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="lottie-icon" id="icon-responsive"></div>
+                        <h3>Responsive Design</h3>
+                        <p>Your website will look amazing on any device, from smartphones to desktops.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="lottie-icon" id="icon-ecommerce"></div>
+                        <h3>E-commerce Ready</h3>
+                        <p>Easily manage products, orders, and payments with our integrated e-commerce solutions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="lottie-icon" id="icon-seo"></div>
+                        <h3>SEO Optimized</h3>
+                        <p>Get found on search engines with our SEO-friendly website structure and best practices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <h2 class="text-center gradient-text mb-5">Our Services</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-inner">
+                            <div class="service-front">
+                                <h3>Website Development</h3>
+                                <p>Custom website development tailored to your specific needs.</p>
+                            </div>
+                            <div class="service-back">
+                                <h3>Website Development</h3>
+                                <p>We create stunning, functional websites that drive results.</p>
+                            </div>
+                        </div>
+                        <span class="service-price">$999</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-inner">
+                            <div class="service-front">
+                                <h3>Mobile App Development</h3>
+                                <p>Develop a mobile app that perfectly compliments your brand and expands your reach.</p>
+                            </div>
+                            <div class="service-back">
+                                <h3>Mobile App Development</h3>
+                                <p>Create a native mobile app and increase mobile sales.</p>
+                            </div>
+                        </div>
+                        <span class="service-price">$1499</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-inner">
+                            <div class="service-front">
+                                <h3>SEO Optimization</h3>
+                                <p>Get top rankings on Google and drive organic traffic to your website.</p>
+                            </div>
+                            <div class="service-back">
+                                <h3>SEO Optimization</h3>
+                                <p>We use proven strategies to improve your website's search engine visibility.</p>
+                            </div>
+                        </div>
+                        <span class="service-price">$499</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-padding">
+        <div class="container">
+            <h2 class="text-center gradient-text mb-5">What Our Clients Say</h2>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Client 1">
+                        </div>
+                        <p class="testimonial-text">"The website is amazing! It's fast, responsive, and looks great on mobile."</p>
+                        <p class="testimonial-name">Jane Doe, CEO</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Client 2">
+                        </div>
+                        <p class="testimonial-text">"Our sales have increased significantly since launching our mobile selling website."</p>
+                        <p class="testimonial-name">John Smith, Founder</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Client 3">
+                        </div>
+                        <p class="testimonial-text">"The team was very professional and delivered the project on time and within budget."</p>
+                        <p class="testimonial-name">Alice Johnson, Marketing Manager</p>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <h2 class="text-center gradient-text mb-5">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="contact-form">
+                        <form id="contactForm" novalidate class="contact-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" name="name" required>
+                                <label for="name" class="form-label">Your Name</label>
+                                <div class="error-message">Please enter your name.</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <label for="email" class="form-label">Your Email</label>
+                                <div class="error-message">Please enter a valid email address.</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                                <label for="phone" class="form-label">Your Phone (Optional)</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                <label for="message" class="form-label">Your Message</label>
+                                <div class="error-message">Please enter your message.</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Mobile Selling. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true
+        });
+        // Lottie Animations
+        const responsiveAnimation = lottie.loadAnimation({
+            container: document.getElementById('icon-responsive'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://lottie.host/46efd1b6-3f04-4c4c-98b9-6558695e7394/y16QW30h1Q.json' // Replace with your Lottie animation URL for responsive design
+        });
+
+        const ecommerceAnimation = lottie.loadAnimation({
+            container: document.getElementById('icon-ecommerce'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://lottie.host/f3df908c-339a-4600-a28e-a55879518704/N8B7217w1t.json' // Replace with your Lottie animation URL for e-commerce
+        });
+
+        const seoAnimation = lottie.loadAnimation({
+            container: document.getElementById('icon-seo'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://lottie.host/860dd997-8696-422c-a441-a9657642a5ca/mX84y39G8v.json' // Replace with your Lottie animation URL for SEO
+        });
+
+          // Testimonial Slider using Swiper
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                992: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+         // Contact Form Validation
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function (event) {
+            if (!contactForm.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                // Show error messages for each invalid field
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+
+                if (!nameInput.validity.valid) {
+                    nameInput.classList.add('is-invalid');
+                    nameInput.nextElementSibling.nextElementSibling.style.display = 'block';
+                } else {
+                    nameInput.classList.remove('is-invalid');
+                    nameInput.nextElementSibling.nextElementSibling.style.display = 'none';
+                }
+
+                if (!emailInput.validity.valid) {
+                    emailInput.classList.add('is-invalid');
+                    emailInput.nextElementSibling.nextElementSibling.style.display = 'block';
+                } else {
+                    emailInput.classList.remove('is-invalid');
+                    emailInput.nextElementSibling.nextElementSibling.style.display = 'none';
+                }
+
+                if (!messageInput.validity.valid) {
+                    messageInput.classList.add('is-invalid');
+                    messageInput.nextElementSibling.nextElementSibling.style.display = 'block';
+                } else {
+                    messageInput.classList.remove('is-invalid');
+                    messageInput.nextElementSibling.nextElementSibling.style.display = 'none';
+                }
+            }
+
+            contactForm.classList.add('was-validated');
+        });
+
+        // Remove error messages when input becomes valid
+        const formInputs = document.querySelectorAll('.form-control');
+        formInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.checkValidity()) {
+                    input.classList.remove('is-invalid');
+                    input.nextElementSibling.nextElementSibling.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

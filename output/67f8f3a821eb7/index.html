@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your dream honeymoon starts here. Expert web development for your perfect getaway planning.">
+    <meta name="keywords" content="honeymoon, web developer, honeymoon planning, wedding, travel, vacation">
+    <meta name="author" content="Honeymoon Web Developer">
+    <title>Honeymoon - Dream Planning, Expert Web Dev</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #f0f8ff;
+            --accent-color: #007bff;
+            --text-color: #333;
+            --light-gray: #eee;
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-color);
+        }
+
+        a:hover {
+            color: darken(var(--accent-color), 10%);
+        }
+
+        /* Header/Navigation */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-color);
+            margin-left: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: url('https://images.unsplash.com/photo-1472552944174-1a9d6f42d142?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        #hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: darken(var(--accent-color), 10%);
+            border-color: darken(var(--accent-color), 10%);
+        }
+
+        /* Features Section */
+        #features {
+            padding: 4rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* About/Services Section */
+        #about,
+        #services {
+            padding: 4rem 0;
+        }
+
+        #about {
+            background-color: var(--light-gray);
+        }
+
+        .about-img,
+        .services-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-img img,
+        .services-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-content h2,
+        .services-content h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .about-content p,
+        .services-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content ul,
+        .services-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-content ul li,
+        .services-content ul li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .about-content ul li::before,
+        .services-content ul li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-color);
+        }
+
+        /* Contact Form */
+        #contact {
+            padding: 4rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        #contact h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--accent-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .invalid-feedback {
+            color: #dc3545;
+            display: none;
+        }
+
+        .form-group .form-control.is-invalid + .invalid-feedback {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-color);
+            color: var(--primary-color);
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 3rem;
+            }
+
+            #hero p {
+                font-size: 1.25rem;
+            }
+
+            .about-img,
+            .services-img {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .animate-on-scroll.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Utilities */
+        .mt-5 {
+            margin-top: 3rem !important;
+        }
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Honeymoon Planner</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <h1 data-aos="fade-up" data-aos-duration="1000">Plan Your Dream Honeymoon</h1>
+            <p data-aos="fade-up" data-aos-duration="1500">Let us create unforgettable memories for your perfect getaway.</p>
+            <a href="#contact" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-duration="2000">Start Planning</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-heart feature-icon"></i>
+                            <h5 class="card-title">Romantic Destinations</h5>
+                            <p class="card-text">Discover the most romantic and breathtaking honeymoon destinations around the world.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="1500">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-plane feature-icon"></i>
+                            <h5 class="card-title">Customized Packages</h5>
+                            <p class="card-text">Tailor-made honeymoon packages to suit your preferences and budget.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-duration="2000">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fas fa-handshake feature-icon"></i>
+                            <h5 class="card-title">Expert Assistance</h5>
+                            <p class="card-text">Get personalized assistance and support from our experienced honeymoon planners.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1519459342432-4e39c91385d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="About Us">
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="about-content">
+                        <h2>About Us</h2>
+                        <p>We are a team of passionate web developers and travel enthusiasts dedicated to creating unforgettable
+                            honeymoon experiences. With years of experience in the industry, we understand the importance of
+                            planning a perfect getaway.</p>
+                        <ul>
+                            <li>Personalized Planning</li>
+                            <li>Expert Guidance</li>
+                            <li>24/7 Support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="services-content">
+                        <h2>Our Services</h2>
+                        <p>From destination selection to itinerary planning, we offer a wide range of services to make your
+                            honeymoon truly special. We handle all the details so you can relax and enjoy your time together.</p>
+                        <ul>
+                            <li>Destination Selection</li>
+                            <li>Itinerary Planning</li>
+                            <li>Accommodation Booking</li>
+                            <li>Activity Arrangements</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="services-img">
+                        <img src="https://images.unsplash.com/photo-1528728329032-b1f82639b4a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Our Services">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 data-aos="fade-up" data-aos-duration="1000">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form id="contactForm" onsubmit="validateForm(event)" class="contact-form">
+                        <div class="form-group" data-aos="fade-up" data-aos-duration="1200">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                            <div class="invalid-feedback">Please enter your name.</div>
+                        </div>
+                        <div class="form-group" data-aos="fade-up" data-aos-duration="1400">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                        <div class="form-group" data-aos="fade-up" data-aos-duration="1600">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
+                            <div class="invalid-feedback">Please enter your message.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1800">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Honeymoon Planner. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form Validation
+        function validateForm(event) {
+            event.preventDefault();
+            let form = document.getElementById('contactForm');
+            let nameInput = document.getElementById('name');
+            let emailInput = document.getElementById('email');
+            let messageInput = document.getElementById('message');
+
+            let isValid = true;
+
+            // Validate Name
+            if (nameInput.value.trim() === "") {
+                nameInput.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                nameInput.classList.remove('is-invalid');
+            }
+
+            // Validate Email
+            if (!isValidEmail(emailInput.value.trim())) {
+                emailInput.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                emailInput.classList.remove('is-invalid');
+            }
+
+            // Validate Message
+            if (messageInput.value.trim() === "") {
+                messageInput.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                messageInput.classList.remove('is-invalid');
+            }
+
+            if (isValid) {
+                alert('Form submitted successfully!'); // Replace with your actual submission logic
+                form.reset();
+            }
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+
+</body>
+
+</html>

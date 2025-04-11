@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodcourt App - Revolutionizing Your Dining Experience</title>
+    <meta name="description" content="Discover a seamless foodcourt experience with our innovative app. Order, pay, and enjoy your favorite meals with ease.">
+    <meta name="keywords" content="foodcourt, app, mobile app, dining, order food, payment, restaurant, food delivery">
+    <meta name="author" content="Foodcourt App Developers">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <style>
+        /* CSS Reset */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variables */
+        :root {
+            --primary-color: #FF5733;
+            --secondary-color: #3498db;
+            --accent-color: #f39c12;
+            --text-color: #333;
+            --light-text-color: #fff;
+            --background-color: #f9f9f9;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--light-text-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1512621776951-6d09b403b1d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 150px 0;
+        }
+
+        #hero h1 {
+            color: var(--light-text-color);
+            font-size: 4rem;
+        }
+
+        .hero-content {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 12px 24px;
+            border-radius: 5px;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* About Section */
+        #about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* Services Section */
+        #services {
+            background-color: var(--background-color);
+        }
+
+        #services .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--light-text-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover i {
+            color: var(--primary-color);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            color: var(--light-text-color);
+        }
+
+        #contact .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        #contact form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #contact label {
+            margin-bottom: 5px;
+        }
+
+        #contact input,
+        #contact textarea {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light-text-color);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #contact input:focus,
+        #contact textarea:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+
+        #contact button {
+            background-color: var(--light-text-color);
+            color: var(--primary-color);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #contact button:hover {
+            background-color: var(--accent-color);
+            color: var(--light-text-color);
+        }
+
+        #contact .contact-info {
+            text-align: center;
+        }
+        #contact .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            nav .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                display: none;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+
+             #about .container,
+            #contact .container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                 width: 100%;
+            }
+        }
+
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Foodcourt App</a>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container hero-content">
+            <h1>Revolutionize Your Foodcourt Experience</h1>
+            <p>Order, Pay, and Enjoy Your Favorite Meals with Ease. Download the App Today!</p>
+            <a href="#" class="btn">Download Now</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="About Foodcourt App">
+            </div>
+            <div data-aos="fade-left">
+                <h2>About Our Foodcourt App</h2>
+                <p>Our foodcourt app is designed to make your dining experience seamless and enjoyable. Browse menus, order your favorite meals, and pay securely, all from your smartphone.</p>
+                <p>We partner with local foodcourts to bring you a wide variety of delicious options. Say goodbye to long lines and hello to convenient dining!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Mobile Ordering</h3>
+                <p>Order your meals directly from your smartphone, no more waiting in line.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-credit-card"></i>
+                <h3>Secure Payments</h3>
+                <p>Pay securely with your credit card or mobile wallet. Fast and easy checkout.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-utensils"></i>
+                <h3>Wide Variety</h3>
+                <p>Choose from a wide selection of restaurants and cuisines available at your local foodcourt.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-bell"></i>
+                <h3>Real-Time Notifications</h3>
+                <p>Receive real-time notifications about your order status and pickup time.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-info" data-aos="fade-right">
+                <h2>Contact Us</h2>
+                <p>Have questions? Reach out to us!</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, Anytown, USA</p>
+                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> info@foodcourtapp.com</p>
+            </div>
+            <form data-aos="fade-left" class="contact-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Foodcourt App. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Smooth scroll functionality
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>

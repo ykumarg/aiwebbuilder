@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your Restaurant - Delicious food and a great dining experience.">
+    <meta name="keywords" content="restaurant, food, dining, cuisine">
+    <meta name="author" content="Your Name">
+    <title>Your Restaurant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Variables */
+        :root {
+            --primary-color: #ff5e3a;
+            --secondary-color: #34495e;
+            --text-color: #333;
+            --light-text-color: #fff;
+            --background-color: #f9f9f9;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease-in-out;
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: darken(var(--primary-color), 10%);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: darken(var(--primary-color), 10%);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: darken(var(--secondary-color), 10%);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--light-text-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1565299624946-b28f40a00e78?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 150px 0;
+        }
+
+        #hero h1 {
+            color: var(--light-text-color);
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--background-color);
+        }
+
+        #about .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        #about .about-content img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        #about .about-content .text {
+            width: 50%;
+        }
+
+        /* Services Section */
+        #services {
+            background-color: var(--light-text-color);
+        }
+
+        #services .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        #services .service-card {
+            background-color: var(--background-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        #services .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        #services .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--background-color);
+        }
+
+        #contact form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #contact .form-group {
+            margin-bottom: 20px;
+        }
+
+        #contact label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        #contact input,
+        #contact textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        #contact textarea {
+            height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            #about .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            #about .about-content img,
+            #about .about-content .text {
+                width: 100%;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+
+        /* Animate On Scroll */
+        [data-aos="fade-in"] {
+          opacity: 0;
+          transition: opacity 1s;
+        }
+
+        [data-aos="fade-in"].aos-animate {
+          opacity: 1;
+        }
+
+    </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://placehold.co/800x400/007bff/white?text=Image';
+        });
+    });
+});
+</script>
+
+<style>
+.contact-form { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid #e1e1e1; border-radius: 4px; font-size: 1rem; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color, #007bff); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
+.contact-form button { width: 100%; padding: 1rem; background: var(--primary-color, #007bff); color: #fff; border: none; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Your Restaurant</a>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container">
+            <h1>Welcome to Your Restaurant</h1>
+            <p>Experience the finest dining in town.</p>
+            <a href="#contact" class="btn">Book a Table</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Restaurant Interior" data-aos="fade-right">
+                <div class="text" data-aos="fade-left">
+                    <p>We are passionate about serving delicious, high-quality food in a warm and inviting atmosphere. Our chefs use only the freshest ingredients to create memorable dining experiences.</p>
+                    <p>From classic dishes to innovative creations, our menu has something for everyone. Join us for lunch, dinner, or a special occasion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Fine Dining</h3>
+                    <p>Experience exquisite cuisine prepared by our award-winning chefs.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-wine-glass"></i>
+                    <h3>Wine Selection</h3>
+                    <p>Choose from our extensive collection of fine wines to complement your meal.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-birthday-cake"></i>
+                    <h3>Special Events</h3>
+                    <p>Celebrate your special occasions with us. We offer custom menus and event planning services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form id="contact-form" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+            <div id="form-status"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            &copy; 2024 Your Restaurant. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 700,
+        easing: 'ease-in-out',
+        once: true,
+      });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact Form Submission
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch('/', {  // Replace '/' with the actual endpoint if you have one.  This example simulates success.
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    return {status: 'success', message: 'Thank you! Your message has been sent.'}; // Simulate success
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById('form-status').innerHTML = '<p style="color: green;">' + data.message + '</p>';
+                    form.reset();
+                } else {
+                    document.getElementById('form-status').innerHTML = '<p style="color: red;">An error occurred. Please try again.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+                document.getElementById('form-status').innerHTML = '<p style="color: red;">An error occurred. Please try again.</p>';
+            });
+        });
+    </script>
+</body>
+</html>
